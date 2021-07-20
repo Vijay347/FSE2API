@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Company.API.Controllers
+namespace Auth.API.Controllers
 {
-    [ApiVersion("1")]
-    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    
+    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

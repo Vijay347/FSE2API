@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiGateway
+namespace Auth.API
 {
     public class Program
     {
@@ -21,12 +21,6 @@ namespace ApiGateway
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                    config.AddJsonFile($"ocelot.{env}.json", optional: false, reloadOnChange: true);
-                    config.AddEnvironmentVariables();
                 });
     }
 }

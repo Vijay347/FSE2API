@@ -1,0 +1,44 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/company",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/company",
+      "UpstreamHttpMethod": [ "Get" ],
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "company"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "company",
+      "Config": [
+        {
+          "Name": "Company API",
+          "Version": "v1",
+          "Url": "http://localhost:5001/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}

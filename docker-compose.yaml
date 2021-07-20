@@ -1,0 +1,72 @@
+version: '3.7'
+
+networks:
+  nat:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 178.80.0.0/16
+
+services:
+  gateway.api:
+    image: ${DOCKER_REGISTRY-}gateway.api:${TAG:-latest}
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: APIGateway/Dockerfile
+    ports:
+      - "8001:80"
+      #- "8002:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+
+      #- ASPNETCORE_HTTPS_PORT=8002
+      #- ASPNETCORE_Kestrel__Certificates__Default__Password=pass12345
+      #- ASPNETCORE_Kestrel__Certificates__Default__Path=/https/estockmarketapi.pfx
+    #volumes:
+        #- ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+        #- ${USERPROFILE}\.aspnet\https\estockmarketapi.pfx:/https/estockmarketapi.pfx:ro
+        #- ./https/aspnetapp.pfx:/https/aspnetapp.pfx:ro
+    networks:
+      nat:
+        ipv4_address: 178.80.0.2
+    links:
+      - company.api
+    depends_on:
+      - company.api
+
+  company.api:
+    image: ${DOCKER_REGISTRY-}company.api:${TAG:-latest}
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Company.API/Dockerfile
+    ports:
+      - "8003:80"
+      #- "8004:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+
+      #- ASPNETCORE_HTTPS_PORT=8004
+      #- ASPNETCORE_Kestrel__Certificates__Default__Password=pass12345
+      #- ASPNETCORE_Kestrel__Certificates__Default__Path=/https/estockmarketapi.pfx
+    #volumes:
+        #- ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+        #- ${USERPROFILE}\.aspnet\https\estockmarketapi.pfx:/https/estockmarketapi.pfx:ro
+        #- ./https/aspnetapp.pfx:/https/aspnetapp.pfx:ro
+    networks:
+      nat:
+        ipv4_address: 178.80.0.3
+
+  #stockapi:
+    #image: ${DOCKER_REGISTRY-}stockapi
+    #build:
+      #context: .
+      #dockerfile: EstockMarketStock.API/Dockerfile
+
+  #stockgetapi:
+    #image: ${DOCKER_REGISTRY-}stockgetapi
+    #build:
+      #context: .
+      #dockerfile: EstockMarketGetStock.API/Dockerfile
