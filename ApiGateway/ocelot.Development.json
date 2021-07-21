@@ -1,16 +1,16 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/v1/company",
+      "DownstreamPathTemplate": "/api/{version}/company",
       "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/api/company",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/gateway/{version}/company",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
         "ClientWhitelist": [],
@@ -19,11 +19,66 @@
         "PeriodTimespan": 1,
         "Limit": 1
       },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"DelegatingHandlers": [
+      //  "GatewayHeaderDelegateHandler"
+      //],
       "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/stock",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{version}/stock",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      "SwaggerKey": "stock"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/stockdetails",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{version}/stockdetails",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      "SwaggerKey": "stock_details"
     }
   ],
   "SwaggerEndPoints": [
@@ -34,6 +89,26 @@
           "Name": "Company API",
           "Version": "v1",
           "Url": "http://localhost:5001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "stock",
+      "Config": [
+        {
+          "Name": "Stock API",
+          "Version": "v1",
+          "Url": "http://localhost:5002/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "stock_details",
+      "Config": [
+        {
+          "Name": "Stock Details API",
+          "Version": "v1",
+          "Url": "http://localhost:5003/swagger/v1/swagger.json"
         }
       ]
     }

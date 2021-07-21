@@ -53,9 +53,7 @@ namespace Company.API
                     ValidIssuer = $"https://cognito-idp.{Region}.amazonaws.com/{PoolId}",
                     ValidateLifetime = true,
                     LifetimeValidator = (before, expires, token, param) => expires > DateTime.UtcNow,
-                    ValidateAudience = true,
-                    ValidAudience = "company",
-                    ClockSkew = TimeSpan.Zero,
+                    ValidateAudience = false,
                     RequireExpirationTime = true
                 };
             };
@@ -97,6 +95,8 @@ namespace Company.API
             services.AddApiVersioning();
 
             services.AddControllers();
+
+            services.AddHttpContextAccessor();
 
             services.AddAuthentication(options =>
             {

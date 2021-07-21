@@ -8,24 +8,23 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Company.API.Controllers
+namespace StockDetails.API.Controllers
 {
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    
-    public class CompanyController : ControllerBase
+    public class StockDetailsController : ControllerBase
     {
         private static int _count = 0;
-        private static readonly string[] Movies = new[]
+        private static readonly string[] Summaries = new[]
         {
-            "Die Another Day", "Top Gun", "Grease", "Dil Bechara", "Jurassic Park"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<CompanyController> _logger;
+        private readonly ILogger<StockDetailsController> _logger;
 
-        public CompanyController(ILogger<CompanyController> logger)
+        public StockDetailsController(ILogger<StockDetailsController> logger)
         {
             _logger = logger;
         }
@@ -35,14 +34,13 @@ namespace Company.API.Controllers
         {
             _count++;
             Console.WriteLine($"get...{_count}");
-            Console.WriteLine(string.Join(":", Request.Headers.Keys));
             if (_count <= 5)
             {
                 Thread.Sleep(5000);
             }
             var rng = new Random();
 
-            return Ok(Movies[rng.Next(Movies.Length)]);
+            return Ok(Summaries[rng.Next(Summaries.Length)]);
         }
     }
 }
