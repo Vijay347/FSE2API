@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/{version}/company",
+      "DownstreamPathTemplate": "/api/{version}/company/getallcompanies",
       "DownstreamScheme": "http",
       "DownstreamHttpMethod": "GET",
       "DownstreamHostAndPorts": [
@@ -10,7 +10,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/gateway/{version}/company",
+      "UpstreamPathTemplate": "/gateway/{version}/company/getallcompanies",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
         "ClientWhitelist": [],
@@ -19,13 +19,87 @@
         "PeriodTimespan": 1,
         "Limit": 1
       },
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "Bearer",
-      //  "AllowedScopes": []
-      //},
-      //"DelegatingHandlers": [
-      //  "GatewayHeaderDelegateHandler"
-      //],
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/company/getcompany/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{version}/company/getcompany/{id}",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/company/updatecompany/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "PUT",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{version}/company/updatecompany/{id}",
+      "UpstreamHttpMethod": "PUT",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/company/addcompany",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "POST",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{version}/company/addcompany",
+      "UpstreamHttpMethod": "POST",
+      "RouteIsCaseSensitive": false,
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/company/deletecompany/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "DELETE",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{version}/company/deletecompany/{id}",
+      "UpstreamHttpMethod": "DELETE",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
       "SwaggerKey": "company"
     },
     {

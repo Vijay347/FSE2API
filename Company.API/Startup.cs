@@ -1,9 +1,11 @@
+using Company.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -57,6 +59,10 @@ namespace Company.API
                     RequireExpirationTime = true
                 };
             };
+
+            var connection = Configuration.GetConnectionString("EstockMarketDatabase");
+            services.AddDbContextPool<EstockmarketContext>(options => options.UseSqlServer(connection));
+
             services.AddVersionedApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";
