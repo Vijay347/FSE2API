@@ -75,7 +75,7 @@ namespace Company.API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Turnover).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.Turnover).HasColumnType("bigint");
 
                 entity.Property(e => e.Website)
                     .IsRequired()

@@ -1,7 +1,22 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/{version}/company/getallcompanies",
+      "DownstreamPathTemplate": "/api/{version}/market/company/register",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "POST",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/company/register",
+      "UpstreamHttpMethod": "POST",
+      "RouteIsCaseSensitive": false,
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/company/getall",
       "DownstreamScheme": "http",
       "DownstreamHttpMethod": "GET",
       "DownstreamHostAndPorts": [
@@ -10,7 +25,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/gateway/{version}/company/getallcompanies",
+      "UpstreamPathTemplate": "/api/{version}/market/company/getall",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
         "ClientWhitelist": [],
@@ -22,7 +37,7 @@
       "SwaggerKey": "company"
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/company/getcompany/{id}",
+      "DownstreamPathTemplate": "/api/{version}/market/company/info/{companycode}",
       "DownstreamScheme": "http",
       "DownstreamHttpMethod": "GET",
       "DownstreamHostAndPorts": [
@@ -31,7 +46,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/gateway/{version}/company/getcompany/{id}",
+      "UpstreamPathTemplate": "/api/{version}/market/company/info/{companycode}",
       "UpstreamHttpMethod": "GET",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
@@ -44,44 +59,7 @@
       "SwaggerKey": "company"
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/company/updatecompany/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHttpMethod": "PUT",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/{version}/company/updatecompany/{id}",
-      "UpstreamHttpMethod": "PUT",
-      "RouteIsCaseSensitive": false,
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      },
-      "SwaggerKey": "company"
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/company/addcompany",
-      "DownstreamScheme": "http",
-      "DownstreamHttpMethod": "POST",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/{version}/company/addcompany",
-      "UpstreamHttpMethod": "POST",
-      "RouteIsCaseSensitive": false,
-      "SwaggerKey": "company"
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/company/deletecompany/{id}",
+      "DownstreamPathTemplate": "/api/{version}/market/company/delete/{companycode}",
       "DownstreamScheme": "http",
       "DownstreamHttpMethod": "DELETE",
       "DownstreamHostAndPorts": [
@@ -90,7 +68,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/gateway/{version}/company/deletecompany/{id}",
+      "UpstreamPathTemplate": "/api/{version}/market/company/delete/{companycode}",
       "UpstreamHttpMethod": "DELETE",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {

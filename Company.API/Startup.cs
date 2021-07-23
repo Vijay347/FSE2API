@@ -134,7 +134,7 @@ namespace Company.API
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Company API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Company API v1.0");
                 c.RoutePrefix = "";
             });
         }
