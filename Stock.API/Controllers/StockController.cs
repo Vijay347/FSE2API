@@ -1,46 +1,47 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+using Stock.API.Models;
 using System.Threading.Tasks;
 
 namespace Stock.API.Controllers
 {
     [ApiVersion("1")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/market/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class StockController : ControllerBase
     {
-        private static int _count = 0;
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IStockService _stockService;
 
         private readonly ILogger<StockController> _logger;
 
-        public StockController(ILogger<StockController> logger)
+        public StockController(ILogger<StockController> logger, IStockService stockService)
         {
+            _stockService = stockService;
             _logger = logger;
         }
 
-        [HttpGet]
-        public ActionResult Get()
+        [HttpPost("AddCompanyStock")]
+        [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Stocks>> PostCompanyStock([FromBody] StockAddVM input)
         {
-            _count++;
-            Console.WriteLine($"get...{_count}");
-            if (_count <= 5)
-            {
-                Thread.Sleep(5000);
-            }
-            var rng = new Random();
+            var stocks = await _stockService.Add(input);
 
-            return Ok(Summaries[rng.Next(Summaries.Length)]);
+            if (stocks == null)
+                return Ok(null);
+
+            return stocks;
+        }
+
+        [HttpDelete("DeleteCompanyStocks/{code}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public async Task<ActionResult<string>> DeleteCompanyStocks([FromRoute] string code)
+        {
+            return await _stockService.DeleteStocks(code);
         }
     }
 }

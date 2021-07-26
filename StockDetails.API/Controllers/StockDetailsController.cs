@@ -1,46 +1,49 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
+using StockDetails.API.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace StockDetails.API.Controllers
 {
     [ApiVersion("1")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/market/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class StockDetailsController : ControllerBase
     {
-        private static int _count = 0;
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IStockService _stockService;
 
         private readonly ILogger<StockDetailsController> _logger;
 
-        public StockDetailsController(ILogger<StockDetailsController> logger)
+        public StockDetailsController(ILogger<StockDetailsController> logger, IStockService stockService)
         {
+            _stockService = stockService;
             _logger = logger;
         }
 
-        [HttpGet]
-        public ActionResult Get()
+        [HttpGet("GetAllCompanyStocks")]
+        [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Stocks>>> GetAllCompanyStocks()
         {
-            _count++;
-            Console.WriteLine($"get...{_count}");
-            if (_count <= 5)
-            {
-                Thread.Sleep(5000);
-            }
-            var rng = new Random();
+           return await _stockService.Get();
+        }
 
-            return Ok(Summaries[rng.Next(Summaries.Length)]);
+        [HttpGet("GetCompanyStocksByCode/{code}")]
+        [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Stocks>>> GetCompanyStocksCode([FromRoute] string code)
+        {
+            return await _stockService.GetStockByCompanyCode(code);
+        }
+
+        [HttpPost("GetCompanyStocks")]
+        [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Stocks>>> GetCompanyStocks([FromBody] StockGetVM input)
+        {
+           return await _stockService.SearchStocks(input);
         }
     }
 }

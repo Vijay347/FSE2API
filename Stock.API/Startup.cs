@@ -8,9 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using Newtonsoft.Json;
+using Stock.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,9 +97,18 @@ namespace Stock.API
                               }
                           });
             });
+
             services.AddApiVersioning();
 
             services.AddControllers();
+
+            services.Configure<StockDatabaseSettings>(
+                Configuration.GetSection(nameof(StockDatabaseSettings)));
+
+            services.AddSingleton<IStockDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<StockDatabaseSettings>>().Value);
+
+            services.AddSingleton<IStockService, StockService>();
 
             services.AddAuthentication(options =>
             {
@@ -110,6 +124,8 @@ namespace Stock.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 
             app.UseRouting();
 

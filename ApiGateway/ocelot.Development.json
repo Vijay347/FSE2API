@@ -81,17 +81,17 @@
       "SwaggerKey": "company"
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/stock",
+      "DownstreamPathTemplate": "/api/{version}/market/stock/addcompanystock",
       "DownstreamScheme": "http",
-      "DownstreamHttpMethod": "GET",
+      "DownstreamHttpMethod": "POST",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5002
         }
       ],
-      "UpstreamPathTemplate": "/gateway/{version}/stock",
-      "UpstreamHttpMethod": "GET",
+      "UpstreamPathTemplate": "/api/{version}/market/stock/add",
+      "UpstreamHttpMethod": "POST",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
         "ClientWhitelist": [],
@@ -100,14 +100,32 @@
         "PeriodTimespan": 1,
         "Limit": 1
       },
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "Bearer",
-      //  "AllowedScopes": []
-      //},
       "SwaggerKey": "stock"
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/stockdetails",
+      "DownstreamPathTemplate": "/api/{version}/market/stock/deletecompanystocks/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "DELETE",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/delete/{code}",
+      "UpstreamHttpMethod": "DELETE",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stockdetails/getcompanystocksbycode/{code}",
       "DownstreamScheme": "http",
       "DownstreamHttpMethod": "GET",
       "DownstreamHostAndPorts": [
@@ -116,7 +134,7 @@
           "Port": 5003
         }
       ],
-      "UpstreamPathTemplate": "/gateway/{version}/stockdetails",
+      "UpstreamPathTemplate": "/api/{version}/market/stock/get/{code}",
       "UpstreamHttpMethod": "GET",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
@@ -126,10 +144,50 @@
         "PeriodTimespan": 1,
         "Limit": 1
       },
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "Bearer",
-      //  "AllowedScopes": []
-      //},
+      "SwaggerKey": "stock_details"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stockdetails/getallcompanystocks",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/getall",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock_details"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stockdetails/getcompanystocks",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/get",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
       "SwaggerKey": "stock_details"
     }
   ],
