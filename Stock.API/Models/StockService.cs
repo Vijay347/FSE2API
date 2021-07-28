@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
 
@@ -31,7 +30,7 @@ namespace Stock.API.Models
                 await _stocks.InsertOneAsync(stk);
                 st = await _stocks.FindAsync(x => x.Id == stk.Id).Result.FirstOrDefaultAsync();
             }
-            catch(MongoException ex)
+            catch(MongoException)
             {
                 throw new Exception("Adding stock failed");
             }
@@ -44,7 +43,7 @@ namespace Stock.API.Models
             {
                 await _stocks.DeleteManyAsync(stk => stk.CompanyCode == code);
             }
-            catch (MongoException ex)
+            catch (MongoException)
             {
                 throw new Exception("No document found");
             }

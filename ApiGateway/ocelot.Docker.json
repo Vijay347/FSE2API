@@ -1,16 +1,31 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/v1/company",
+      "DownstreamPathTemplate": "/api/{version}/market/company/register",
       "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "POST",
       "DownstreamHostAndPorts": [
         {
           "Host": "company.api",
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/company",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/api/{version}/market/company/register",
+      "UpstreamHttpMethod": "POST",
+      "RouteIsCaseSensitive": false,
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/company/getall",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "company.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/company/getall",
       "RouteIsCaseSensitive": false,
       "RateLimitOptions": {
         "ClientWhitelist": [],
@@ -19,11 +34,161 @@
         "PeriodTimespan": 1,
         "Limit": 1
       },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/company/info/{companycode}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "company.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/company/info/{companycode}",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
       },
       "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/company/delete/{companycode}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "DELETE",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "company.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/company/delete/{companycode}",
+      "UpstreamHttpMethod": "DELETE",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "company"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stock/addcompanystock",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "POST",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "stock.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/add",
+      "UpstreamHttpMethod": "POST",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stock/deletecompanystocks/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "DELETE",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "stock.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/delete/{code}",
+      "UpstreamHttpMethod": "DELETE",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stockdetails/getcompanystocksbycode/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "stockdet.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/get/{code}",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock_details"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stockdetails/getallcompanystocks",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "stockdet.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/getall",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock_details"
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/market/stockdetails/getcompanystocks",
+      "DownstreamScheme": "http",
+      "DownstreamHttpMethod": "GET",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "stockdet.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/market/stock/get",
+      "UpstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "SwaggerKey": "stock_details"
     }
   ],
   "SwaggerEndPoints": [
@@ -34,6 +199,26 @@
           "Name": "Company API",
           "Version": "v1",
           "Url": "http://company.api:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "stock",
+      "Config": [
+        {
+          "Name": "Stock API",
+          "Version": "v1",
+          "Url": "http://stock.api:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "stock_details",
+      "Config": [
+        {
+          "Name": "Stock Details API",
+          "Version": "v1",
+          "Url": "http://stockdet.api:80/swagger/v1/swagger.json"
         }
       ]
     }

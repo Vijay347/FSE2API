@@ -130,6 +130,8 @@ namespace Company.API
                 endpoints.MapControllers();
             });
 
+            app.UseHeaderMiddleware();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

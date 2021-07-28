@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StockDetails.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -29,21 +30,57 @@ namespace StockDetails.API.Controllers
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Stocks>>> GetAllCompanyStocks()
         {
-           return await _stockService.Get();
+            _logger.LogInformation("Start calling GetAllCompanyStocks function");
+            List<Stocks> stocks;
+            try
+            {
+                stocks = await _stockService.Get();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("There is an exception", ex);
+                throw;
+            }
+            _logger.LogInformation("End calling GetAllCompanyStocks function");
+            return stocks;
         }
 
         [HttpGet("GetCompanyStocksByCode/{code}")]
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Stocks>>> GetCompanyStocksCode([FromRoute] string code)
         {
-            return await _stockService.GetStockByCompanyCode(code);
+            _logger.LogInformation("Start calling GetCompanyStocksCode function");
+            List<Stocks> stocks;
+            try
+            {
+                stocks = await _stockService.GetStockByCompanyCode(code);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("There is an exception", ex);
+                throw;
+            }
+            _logger.LogInformation("End calling GetCompanyStocksCode function");
+            return stocks;
         }
 
         [HttpPost("GetCompanyStocks")]
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Stocks>>> GetCompanyStocks([FromBody] StockGetVM input)
         {
-           return await _stockService.SearchStocks(input);
+            _logger.LogInformation("Start calling GetCompanyStocks function");
+            List<Stocks> stocks;
+            try
+            {
+                stocks = await _stockService.SearchStocks(input);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("There is an exception", ex);
+                throw;
+            }
+            _logger.LogInformation("End calling GetCompanyStocks function");
+            return stocks;
         }
     }
 }

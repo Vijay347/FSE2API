@@ -102,6 +102,8 @@ namespace Stock.API
 
             services.AddControllers();
 
+            services.AddHttpContextAccessor();
+
             services.Configure<StockDatabaseSettings>(
                 Configuration.GetSection(nameof(StockDatabaseSettings)));
 
@@ -139,6 +141,8 @@ namespace Stock.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseHeaderMiddleware();
 
             app.UseSwagger();
 

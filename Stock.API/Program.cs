@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
+using Serilog.Sinks.Kafka;
+using Stock.API.Logging;
 
 namespace Stock.API
 {
@@ -13,11 +10,17 @@ namespace Stock.API
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Kafka(bootstrapServers: "localhost:9092", topic: "stocks")
+                .Enrich.StockLogEnricher()
+                //.WriteTo.File("E:\\Estockmarket_stock_api.txt")
+                .CreateLogger();
             CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

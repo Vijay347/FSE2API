@@ -106,6 +106,8 @@ namespace StockDetails.API
 
             services.AddControllers();
 
+            services.AddHttpContextAccessor();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -133,6 +135,8 @@ namespace StockDetails.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseHeaderMiddleware();
 
             app.UseSwagger();
 

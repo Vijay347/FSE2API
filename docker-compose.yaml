@@ -59,14 +59,34 @@ services:
       nat:
         ipv4_address: 178.80.0.3
 
-  #stockapi:
-    #image: ${DOCKER_REGISTRY-}stockapi
-    #build:
-      #context: .
-      #dockerfile: EstockMarketStock.API/Dockerfile
+  stock.api:
+    image: ${DOCKER_REGISTRY-}stock.api:${TAG:-latest}
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Stock.API/Dockerfile
+    ports:
+      - "8004:80"
+      #- "8005:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+
+    networks:
+      nat:
+        ipv4_address: 178.80.0.4
 
-  #stockgetapi:
-    #image: ${DOCKER_REGISTRY-}stockgetapi
-    #build:
-      #context: .
-      #dockerfile: EstockMarketGetStock.API/Dockerfile
+  stockdet.api:
+    image: ${DOCKER_REGISTRY-}stockdet.api:${TAG:-latest}
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: StockDetails.API/Dockerfile
+    ports:
+      - "8006:80"
+      #- "8007:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+
+    networks:
+      nat:
+        ipv4_address: 178.80.0.5
