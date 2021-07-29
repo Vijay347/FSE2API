@@ -1,3 +1,4 @@
+using Company.API.Logging;
 using Company.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -114,6 +115,7 @@ namespace Company.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            CompanyLogEnricher.ServiceProvider = app.ApplicationServices;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

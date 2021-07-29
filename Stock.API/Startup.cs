@@ -15,6 +15,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using Newtonsoft.Json;
+using Stock.API.Logging;
 using Stock.API.Models;
 using System;
 using System.Collections.Generic;
@@ -122,6 +123,7 @@ namespace Stock.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            StockLogEnricher.ServiceProvider = app.ApplicationServices;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
