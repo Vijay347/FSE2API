@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Prometheus;
 using StockDetails.API.Logging;
 using StockDetails.API.Models;
 using System;
@@ -138,9 +139,13 @@ namespace StockDetails.API
                 endpoints.MapControllers();
             });
 
-            app.UseHeaderMiddleware();
-
             app.UseSwagger();
+
+            app.UseMetricServer();
+
+            app.UseHttpMetrics();
+
+            app.UseRequestMiddleware();
 
             app.UseSwaggerUI(c =>
             {

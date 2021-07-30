@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Prometheus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,9 +133,13 @@ namespace Company.API
                 endpoints.MapControllers();
             });
 
-            app.UseHeaderMiddleware();
-
             app.UseSwagger();
+
+            app.UseMetricServer();
+
+            app.UseHttpMetrics();
+
+            app.UseRequestMiddleware();
 
             app.UseSwaggerUI(c =>
             {

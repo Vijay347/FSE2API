@@ -91,3 +91,6 @@ C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1
 C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\msvcp120.dll
 C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\msvcr120.dll
 C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\zlib.dll
+C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\Prometheus.NetCore.dll
+C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\Prometheus.NetStandard.dll
+C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\Prometheus.AspNetCore.dll

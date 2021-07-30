@@ -91,6 +91,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.1.4, )"
+            },
+            "prometheus-net.AspNetCore": {
+              "target": "Package",
+              "version": "[4.2.0, )"
             }
           },
           "imports": [

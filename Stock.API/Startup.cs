@@ -15,6 +15,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using Newtonsoft.Json;
+using Prometheus;
 using Stock.API.Logging;
 using Stock.API.Models;
 using System;
@@ -144,9 +145,13 @@ namespace Stock.API
                 endpoints.MapControllers();
             });
 
-            app.UseHeaderMiddleware();
-
             app.UseSwagger();
+
+            app.UseMetricServer();
+
+            app.UseHttpMetrics();
+
+            app.UseRequestMiddleware();
 
             app.UseSwaggerUI(c =>
             {

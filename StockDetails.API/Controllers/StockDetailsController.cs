@@ -47,9 +47,9 @@ namespace StockDetails.API.Controllers
 
         [HttpGet("GetCompanyStocksByCode/{code}")]
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Stocks>>> GetCompanyStocksCode([FromRoute] string code)
+        public async Task<ActionResult<List<Stocks>>> GetCompanyStocksByCode([FromRoute] string code)
         {
-            _logger.LogInformation("Start calling GetCompanyStocksCode function");
+            _logger.LogInformation("Start calling GetCompanyStocksByCode function");
             List<Stocks> stocks;
             try
             {
@@ -60,7 +60,7 @@ namespace StockDetails.API.Controllers
                 _logger.LogError("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling GetCompanyStocksCode function");
+            _logger.LogInformation("End calling GetCompanyStocksByCode function");
             return stocks;
         }
 
