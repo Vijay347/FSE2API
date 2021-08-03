@@ -11,8 +11,8 @@ namespace StockDetails.API
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                //.WriteTo.Kafka(bootstrapServers: "172.18.18.238:29092", topic: "stocks-details", securityProtocol: Confluent.Kafka.SecurityProtocol.Plaintext)
-                .WriteTo.File(@"E:\\Estockmarket_stockdetails_api.txt")
+                .WriteTo.Kafka(bootstrapServers: "172.18.18.238:29092", topic: "stocks-details", securityProtocol: Confluent.Kafka.SecurityProtocol.Plaintext)
+                //.WriteTo.File(@"E:\\Estockmarket_stockdetails_api.txt")
                 .Enrich.StockDetailsLogEnricher()
                 .CreateLogger();
 
