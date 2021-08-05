@@ -18,6 +18,7 @@ namespace Stock.API.Models
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
+    
     public class Stocks
     {
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]

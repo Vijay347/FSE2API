@@ -5,20 +5,17 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServices", "{D279B2B9-0850-4868-953E-E3C894B38487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.API", "Company.API\Company.API.csproj", "{63CA188C-6D82-4E1B-9F41-569D53D88D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.API", "Company.API\Company.API.csproj", "{63CA188C-6D82-4E1B-9F41-569D53D88D91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.API", "Stock.API\Stock.API.csproj", "{A030F1BF-65B6-4FB6-B553-F5C6EB8AACD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.API", "Stock.API\Stock.API.csproj", "{A030F1BF-65B6-4FB6-B553-F5C6EB8AACD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockDetails.API", "StockDetails.API\StockDetails.API.csproj", "{E6425BF3-9C8F-49D5-8765-89C61BBDC9B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockDetails.API", "StockDetails.API\StockDetails.API.csproj", "{E6425BF3-9C8F-49D5-8765-89C61BBDC9B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{01226D44-CD74-406C-9AA9-C9B5900634EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{824645C2-C893-47DF-996F-88D1000DD34A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{824645C2-C893-47DF-996F-88D1000DD34A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29DE5423-9971-4527-BD8B-1EC64F855762}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yaml = docker-compose.yaml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

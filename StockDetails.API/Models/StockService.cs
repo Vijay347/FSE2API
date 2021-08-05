@@ -44,4 +44,9 @@ namespace StockDetails.API.Models
             return await _stocks.FindAsync(stk => stk.CompanyCode == input.CompanyCode && stk.Date >= input.StartDate && stk.Date <= input.EndDate).Result.ToListAsync();
         }
     }
+
+    public class StockDynamoDBService
+    {
+
+    }
 }

@@ -26,15 +26,5 @@ namespace Company.API
                     webBuilder.UseStartup<Startup>();
                 });
 
-        //private static string GetTopicName(LogEvent logEntry)
-        //{
-        //    var logInfo = logEntry.Properties["LogEntry"] as StructureValue;
-        //    var lookup = logInfo?.Properties.FirstOrDefault(a => a.Name == "some_property_name");
-
-        //    return (string.Equals(lookup, "valueForTopicA"))
-        //      ? "topicA"
-        //      : "topicB";
-        //}
-
     }
 }

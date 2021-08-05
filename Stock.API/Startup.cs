@@ -1,3 +1,7 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
+using Amazon.Runtime;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +46,22 @@ namespace Stock.API
             var PoolId = Configuration["AWSCognito:PoolId"];
             var AppClientId = Configuration["AWSCognito:AppClientId"];
 
+            //#region DynamoDB
+            //var AWSDynamoDBAccessKey = Configuration["AWSDynamoDB:AccessKey"];
+            //var AWSDynamoDBSecretKey = Configuration["AWSDynamoDB:SecretKey"];
+            //var AWSDynamoDBServiceURL = Configuration["AWSDynamoDB:ServiceURL"];
+
+            //var credentials = new BasicAWSCredentials(AWSDynamoDBAccessKey, AWSDynamoDBSecretKey);
+            //var config = new AmazonDynamoDBConfig()
+            //{
+            //    RegionEndpoint = RegionEndpoint.USEast2,
+            //    ServiceURL = AWSDynamoDBServiceURL
+            //};
+            //var client = new AmazonDynamoDBClient(credentials, config);
+            //services.AddSingleton<IAmazonDynamoDB>(client);
+            //services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+            //#endregion
+
             Action<JwtBearerOptions> options = o =>
             {
                 o.RequireHttpsMetadata = false;
@@ -64,6 +84,7 @@ namespace Stock.API
                     RequireExpirationTime = true
                 };
             };
+
             services.AddVersionedApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";
