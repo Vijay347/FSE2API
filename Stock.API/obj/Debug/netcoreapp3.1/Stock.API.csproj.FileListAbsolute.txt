@@ -94,3 +94,6 @@ C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1
 C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\Prometheus.NetCore.dll
 C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\Prometheus.NetStandard.dll
 C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\Prometheus.AspNetCore.dll
+C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\AWSSDK.Core.dll
+C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\AWSSDK.DynamoDBv2.dll
+C:\Users\User\Documents\GitHub\estockmarketapi\Stock.API\bin\Debug\netcoreapp3.1\AWSSDK.Extensions.NETCore.Setup.dll

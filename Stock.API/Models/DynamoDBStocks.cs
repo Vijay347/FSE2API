@@ -9,7 +9,6 @@ namespace Stock.API.Models
         [DynamoDBProperty("Id")]
         [DynamoDBHashKey]
         public Guid Id { get; set; }
-        [DynamoDBRangeKey]
         [DynamoDBProperty("CompanyCode")]
         public string CompanyCode { get; set; }
         [DynamoDBProperty("Price")]

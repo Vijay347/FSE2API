@@ -25,7 +25,7 @@ namespace Stock.API.Models
                 await _dynamoDbContext.SaveAsync(stk);
                 st = await _dynamoDbContext.LoadAsync<DynamoDBStocks>(stk.Id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Adding stock failed");
             }
