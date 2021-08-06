@@ -46,21 +46,21 @@ namespace Stock.API
             var PoolId = Configuration["AWSCognito:PoolId"];
             var AppClientId = Configuration["AWSCognito:AppClientId"];
 
-            //#region DynamoDB
-            //var AWSDynamoDBAccessKey = Configuration["AWSDynamoDB:AccessKey"];
-            //var AWSDynamoDBSecretKey = Configuration["AWSDynamoDB:SecretKey"];
-            //var AWSDynamoDBServiceURL = Configuration["AWSDynamoDB:ServiceURL"];
+            #region DynamoDB
+            var AWSDynamoDBAccessKey = Configuration["AWSDynamoDB:AccessKey"];
+            var AWSDynamoDBSecretKey = Configuration["AWSDynamoDB:SecretKey"];
+            var AWSDynamoDBServiceURL = Configuration["AWSDynamoDB:ServiceURL"];
 
-            //var credentials = new BasicAWSCredentials(AWSDynamoDBAccessKey, AWSDynamoDBSecretKey);
-            //var config = new AmazonDynamoDBConfig()
-            //{
-            //    RegionEndpoint = RegionEndpoint.USEast2,
-            //    ServiceURL = AWSDynamoDBServiceURL
-            //};
-            //var client = new AmazonDynamoDBClient(credentials, config);
-            //services.AddSingleton<IAmazonDynamoDB>(client);
-            //services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
-            //#endregion
+            var credentials = new BasicAWSCredentials(AWSDynamoDBAccessKey, AWSDynamoDBSecretKey);
+            var config = new AmazonDynamoDBConfig()
+            {
+                RegionEndpoint = RegionEndpoint.USEast2,
+                ServiceURL = AWSDynamoDBServiceURL
+            };
+            var client = new AmazonDynamoDBClient(credentials, config);
+            services.AddSingleton<IAmazonDynamoDB>(client);
+            services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+            #endregion
 
             Action<JwtBearerOptions> options = o =>
             {
@@ -133,7 +133,9 @@ namespace Stock.API
             services.AddSingleton<IStockDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<StockDatabaseSettings>>().Value);
 
-            services.AddSingleton<IStockService, StockService>();
+            //services.AddSingleton<IStockService, StockService>();
+
+            services.AddSingleton<IDynamoDBService, DynamoDBService>();
 
             services.AddAuthentication(options =>
             {
@@ -150,8 +152,6 @@ namespace Stock.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 
             app.UseRouting();
 

@@ -7,6 +7,6 @@ namespace Stock.API.Models
         public string CompanyCode { get; set; }
         public decimal Price { get; set; }
         public DateTime? Date { get; set; }
-        public string Time { get; set; }
+        public DateTime? Time { get; set; }
     }
 }

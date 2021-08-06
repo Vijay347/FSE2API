@@ -31,6 +31,7 @@ namespace Stock.API.Models
         [BsonDateTimeOptions(DateOnly = true, Kind = DateTimeKind.Local)]
         public DateTime? Date { get; set; }
         [BsonElement]
-        public string Time { get; set; }
+        [BsonDateTimeOptions(DateOnly = false, Kind = DateTimeKind.Local)]
+        public DateTime? Time { get; set; }
     }
 }

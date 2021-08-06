@@ -1,7 +1,7 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 using System;
 
-namespace Stock.API.Models
+namespace StockDetails.API.Models
 {
     [DynamoDBTable("Stocks")]
     public class DynamoDBStocks

@@ -21,16 +21,17 @@ namespace StockDetails.API.Models
     public class Stocks
     {
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
-        public virtual Guid Id { get; set; }
+        public Guid Id { get; set; }
         [BsonElement]
-        public virtual string CompanyCode { get; set; }
+        public string CompanyCode { get; set; }
         [BsonElement]
-        public virtual decimal Price { get; set; }
+        public decimal Price { get; set; }
         [BsonElement]
         [BsonDateTimeOptions(DateOnly = true, Kind = DateTimeKind.Local)]
-        public virtual DateTime? Date { get; set; }
+        public DateTime? Date { get; set; }
         [BsonElement]
-        public virtual string Time { get; set; }
+        [BsonDateTimeOptions(DateOnly = false, Kind = DateTimeKind.Local)]
+        public DateTime? Time { get; set; }
     }
 
 }
