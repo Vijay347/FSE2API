@@ -15,76 +15,36 @@ namespace Stock.API.Controllers
     [ApiController]
     public class StockController : ControllerBase
     {
-        //private readonly IStockService _stockService; // Mongo DB service local
-        private readonly IDynamoDBService _dynamoDbstockService; // AWS Dynamo DB service local
+        private readonly IStockService _stockService; // Mongo DB service local
+        //private readonly IDynamoDBService _dynamoDbstockService; // AWS Dynamo DB service local
 
         private readonly ILogger<StockController> _logger;
 
         // Mongo DB service local
-        //public StockDetailsController(ILogger<StockDetailsController> logger, IStockService stockService)
-        //{
-        //    _stockService = stockService;
-        //    _logger = logger;
-        //}
-
-        // AWS Dynamo DB service local
-        public StockController(ILogger<StockController> logger, IDynamoDBService dynamoDbstockService)
+        public StockController(ILogger<StockController> logger, IStockService stockService)
         {
-            _dynamoDbstockService = dynamoDbstockService;
+            _stockService = stockService;
             _logger = logger;
         }
 
-        //[HttpPost("AddCompanyStock")]
-        //[ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<ActionResult<Stocks>> PostCompanyStock([FromBody] StockAddVM input)
+        // AWS Dynamo DB service local
+        //public StockController(ILogger<StockController> logger, IDynamoDBService dynamoDbstockService)
         //{
-        //    _logger.LogInformation("Start calling PostCompanyStock function");
-        //    Stocks stocks = null;
-
-        //    try
-        //    {
-        //        stocks = await _stockService.Add(input);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("There is an exception", ex);
-        //        throw;
-        //    }
-        //    _logger.LogInformation("End calling PostCompanyStock function");
-        //    return stocks;
-        //}
-
-        //[HttpDelete("DeleteCompanyStocks/{code}")]
-        //[ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        //public async Task<ActionResult<string>> DeleteCompanyStocks([FromRoute] string code)
-        //{
-        //    _logger.LogInformation("Start calling DeleteCompanyStocks function");
-        //    string result = null;
-        //    try
-        //    {
-        //        result = await _stockService.DeleteStocks(code);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        _logger.LogError("There is an exception", ex);
-        //        throw;
-        //    }
-        //    _logger.LogInformation("End calling DeleteCompanyStocks function");
-        //    return result;
+        //    _dynamoDbstockService = dynamoDbstockService;
+        //    _logger = logger;
         //}
 
         [HttpPost("AddCompanyStock")]
-        [ProducesResponseType(typeof(DynamoDBStocks), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DynamoDBStocks>> PostCompanyStock([FromBody] StockAddVM input)
+        public async Task<ActionResult<Stocks>> PostCompanyStock([FromBody] StockAddVM input)
         {
             _logger.LogInformation("Start calling PostCompanyStock function");
-            DynamoDBStocks stocks = null;
+            Stocks stocks = null;
 
             try
             {
-                stocks = await _dynamoDbstockService.Add(input);
+                stocks = await _stockService.Add(input);
             }
             catch (Exception ex)
             {
@@ -103,7 +63,7 @@ namespace Stock.API.Controllers
             string result = null;
             try
             {
-                result = await _dynamoDbstockService.DeleteStocks(code);
+                result = await _stockService.DeleteStocks(code);
             }
             catch (Exception ex)
             {
@@ -113,5 +73,45 @@ namespace Stock.API.Controllers
             _logger.LogInformation("End calling DeleteCompanyStocks function");
             return result;
         }
+
+        //[HttpPost("AddCompanyStock")]
+        //[ProducesResponseType(typeof(DynamoDBStocks), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult<DynamoDBStocks>> PostCompanyStock([FromBody] StockAddVM input)
+        //{
+        //    _logger.LogInformation("Start calling PostCompanyStock function");
+        //    DynamoDBStocks stocks = null;
+
+        //    try
+        //    {
+        //        stocks = await _dynamoDbstockService.Add(input);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError("There is an exception", ex);
+        //        throw;
+        //    }
+        //    _logger.LogInformation("End calling PostCompanyStock function");
+        //    return stocks;
+        //}
+
+        //[HttpDelete("DeleteCompanyStocks/{code}")]
+        //[ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        //public async Task<ActionResult<string>> DeleteCompanyStocks([FromRoute] string code)
+        //{
+        //    _logger.LogInformation("Start calling DeleteCompanyStocks function");
+        //    string result = null;
+        //    try
+        //    {
+        //        result = await _dynamoDbstockService.DeleteStocks(code);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError("There is an exception", ex);
+        //        throw;
+        //    }
+        //    _logger.LogInformation("End calling DeleteCompanyStocks function");
+        //    return result;
+        //}
     }
 }

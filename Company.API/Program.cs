@@ -11,8 +11,8 @@ namespace Company.API
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                 //.WriteTo.Kafka(bootstrapServers: "172.18.18.238:29092", topic: "company", securityProtocol: Confluent.Kafka.SecurityProtocol.Plaintext)
-                 .WriteTo.File(@"E:\\Estockmarket_company_api.txt")
+                 .WriteTo.Kafka(bootstrapServers: "localhost:9092", topic: "company", securityProtocol: Confluent.Kafka.SecurityProtocol.Plaintext)
+                 //.WriteTo.File(@"E:\\Estockmarket_company_api.txt")
                  .Enrich.CompanyLogEnricher()
                 .CreateLogger();
             CreateHostBuilder(args).Build().Run();
