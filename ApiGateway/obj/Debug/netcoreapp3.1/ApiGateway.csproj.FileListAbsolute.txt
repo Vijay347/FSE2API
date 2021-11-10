@@ -47,7 +47,6 @@ C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.
 C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\staticwebassets\ApiGateway.StaticWebAssets.xml
 C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\scopedcss\bundle\ApiGateway.styles.css
 C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\ApiGateway.RazorTargetAssemblyInfo.cache
-C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\ApiGateway.csproj.CopyComplete
 C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\ApiGateway.dll
 C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\ApiGateway.pdb
 C:\Users\user\Documents\GitHub\estockmarketapi\ApiGateway\obj\Debug\netcoreapp3.1\ApiGateway.genruntimeconfig.cache
