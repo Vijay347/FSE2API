@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using Stock.API.Models;
 using System;
 using System.Threading.Tasks;
@@ -16,16 +17,20 @@ namespace Stock.API.Controllers
     public class StockController : ControllerBase
     {
         private readonly IStockService _stockService; // Mongo DB service local
-        //private readonly IDynamoDBService _dynamoDbstockService; // AWS Dynamo DB service local
+                                                      //private readonly IDynamoDBService _dynamoDbstockService; // AWS Dynamo DB service local
 
-        private readonly ILogger<StockController> _logger;
+        //private readonly ILogger<StockController> _logger;
 
         // Mongo DB service local
-        public StockController(ILogger<StockController> logger, IStockService stockService)
+        public StockController(IStockService stockService)
         {
             _stockService = stockService;
-            _logger = logger;
         }
+        //public StockController(ILogger<StockController> logger, IStockService stockService)
+        //{
+        //    _stockService = stockService;
+        //    _logger = logger;
+        //}
 
         // AWS Dynamo DB service local
         //public StockController(ILogger<StockController> logger, IDynamoDBService dynamoDbstockService)
@@ -39,7 +44,7 @@ namespace Stock.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Stocks>> PostCompanyStock([FromBody] StockAddVM input)
         {
-            _logger.LogInformation("Start calling PostCompanyStock function");
+            Log.Information("Start calling PostCompanyStock function");
             Stocks stocks = null;
 
             try
@@ -48,10 +53,10 @@ namespace Stock.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling PostCompanyStock function");
+            Log.Information("End calling PostCompanyStock function");
             return stocks;
         }
 
@@ -59,7 +64,7 @@ namespace Stock.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         public async Task<ActionResult<string>> DeleteCompanyStocks([FromRoute] string code)
         {
-            _logger.LogInformation("Start calling DeleteCompanyStocks function");
+            Log.Information("Start calling DeleteCompanyStocks function");
             string result = null;
             try
             {
@@ -67,10 +72,10 @@ namespace Stock.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling DeleteCompanyStocks function");
+            Log.Information("End calling DeleteCompanyStocks function");
             return result;
         }
 

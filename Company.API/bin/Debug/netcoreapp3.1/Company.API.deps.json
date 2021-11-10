@@ -42,6 +42,7 @@
           "Serilog.AspNetCore": "3.4.0",
           "Serilog.Settings.Configuration": "3.1.0",
           "Serilog.Sinks.Async": "1.5.0",
+          "Serilog.Sinks.AwsCloudWatch": "4.0.171",
           "Serilog.Sinks.Confluent.Kafka": "1.9.2",
           "Serilog.Sinks.File": "5.0.0",
           "Serilog.Sinks.Http": "7.2.0",
@@ -322,6 +323,31 @@
         },
         "compile": {
           "Company.API.dll": {}
+        }
+      },
+      "AWSSDK.CloudWatchLogs/3.7.0.13": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.0.14"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.CloudWatchLogs.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.0.13"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.CloudWatchLogs.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.0.14": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.0.14"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
         }
       },
       "Confluent.Kafka/1.6.3": {
@@ -1631,6 +1657,22 @@
         },
         "compile": {
           "lib/netstandard2.0/Serilog.Sinks.Async.dll": {}
+        }
+      },
+      "Serilog.Sinks.AwsCloudWatch/4.0.171": {
+        "dependencies": {
+          "AWSSDK.CloudWatchLogs": "3.7.0.13",
+          "Serilog": "2.10.0",
+          "Serilog.Sinks.PeriodicBatching": "2.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Serilog.Sinks.AwsCloudWatch.dll": {
+            "assemblyVersion": "4.0.171.0",
+            "fileVersion": "4.0.171.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Serilog.Sinks.AwsCloudWatch.dll": {}
         }
       },
       "Serilog.Sinks.Confluent.Kafka/1.9.2": {
@@ -4380,6 +4422,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AWSSDK.CloudWatchLogs/3.7.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oA6Z0O6vyqwTxYwPQKBHWpSp6jeU59EAHn0Vcx3GUlqbe0WLNH44g/0hHEKBG0IWyjiE7sHfVqN2U19+tJ5qfA==",
+      "path": "awssdk.cloudwatchlogs/3.7.0.13",
+      "hashPath": "awssdk.cloudwatchlogs.3.7.0.13.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.7.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-n9V+mwRStMzXl/GnD+J0uwnySMUB/Ug+yJ0G2B4XBQZYIegWWfqeQT2KqaP4hI08L49vY6JDIWIKEW4sNidNEg==",
+      "path": "awssdk.core/3.7.0.14",
+      "hashPath": "awssdk.core.3.7.0.14.nupkg.sha512"
+    },
     "Confluent.Kafka/1.6.3": {
       "type": "package",
       "serviceable": true,
@@ -5044,6 +5100,13 @@
       "sha512": "sha512-csHYIqAwI4Gy9oAhXYRwxGrQEAtBg3Ep7WaCzsnA1cZuBZjVAU0n7hWaJhItjO7hbLHh/9gRVxALCUB4Dv+gZw==",
       "path": "serilog.sinks.async/1.5.0",
       "hashPath": "serilog.sinks.async.1.5.0.nupkg.sha512"
+    },
+    "Serilog.Sinks.AwsCloudWatch/4.0.171": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eJ0ZKLWbrOQ38u3/+vLZwTrBt6KtWthdvR6s0SmvbuupO3kr5x93UL3klzhp0Ewe/CwfYcYZ88hygJQ+Xe89Mg==",
+      "path": "serilog.sinks.awscloudwatch/4.0.171",
+      "hashPath": "serilog.sinks.awscloudwatch.4.0.171.nupkg.sha512"
     },
     "Serilog.Sinks.Confluent.Kafka/1.9.2": {
       "type": "package",

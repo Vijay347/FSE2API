@@ -178,3 +178,7 @@ C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\obj\Debug\netcoreapp3
 C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\obj\Debug\netcoreapp3.1\Company.API.dll
 C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\obj\Debug\netcoreapp3.1\Company.API.pdb
 C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\obj\Debug\netcoreapp3.1\Company.API.genruntimeconfig.cache
+C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\bin\Debug\netcoreapp3.1\AWSSDK.CloudWatchLogs.dll
+C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\bin\Debug\netcoreapp3.1\AWSSDK.Core.dll
+C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\bin\Debug\netcoreapp3.1\Serilog.Sinks.AwsCloudWatch.dll
+C:\Users\user\Documents\GitHub\estockmarketapi\Company.API\obj\Debug\netcoreapp3.1\Company.API.csproj.CopyComplete

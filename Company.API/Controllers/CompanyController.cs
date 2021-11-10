@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Net.Mime;
@@ -21,11 +22,16 @@ namespace Company.API.Controllers
     public class CompanyController : ControllerBase
     {
         private readonly EstockmarketContext _context;
-        private readonly ILogger<CompanyController> _logger;
+        //private readonly ILogger<CompanyController> _logger;
 
-        public CompanyController(ILogger<CompanyController> logger, EstockmarketContext context)
+        //public CompanyController(ILogger<CompanyController> logger, EstockmarketContext context)
+        //{
+        //    _logger = logger;
+        //    _context = context;
+        //}
+
+        public CompanyController(EstockmarketContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
@@ -34,7 +40,8 @@ namespace Company.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> PostCompany([FromBody] CompanyDetails companyDetails)
         {
-            _logger.LogInformation("Start calling PostCompany function");
+            Log.Information("Start calling PostCompany function");
+            //_logger.LogInformation("Start calling PostCompany function");
             using (IDbContextTransaction _transaction = _context.Database.BeginTransaction())
             {
                 try
@@ -45,12 +52,12 @@ namespace Company.API.Controllers
                 }
                 catch (DbUpdateException ex)
                 {
-                    _logger.LogError("There is an exception", ex);
+                    Log.Error("There is an exception", ex);
                     _transaction.Rollback();
                     throw;
                 }
             }
-            _logger.LogInformation("End calling PostCompany function");
+            Log.Information("End calling PostCompany function");
             return Ok(companyDetails);
         }
 
@@ -60,7 +67,7 @@ namespace Company.API.Controllers
         public async Task<ActionResult<CompanyDetails>> GetCompanyByCode([FromRoute] string companycode)
         {
             CompanyDetails det = null;
-            _logger.LogInformation("Start calling GetCompanyByCode function");
+            Log.Information("Start calling GetCompanyByCode function");
             try
             {
                 det = await _context.CompanyDetails
@@ -68,10 +75,10 @@ namespace Company.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling GetCompanyByCode function");
+            Log.Information("End calling GetCompanyByCode function");
             return det;
         }
 
@@ -80,7 +87,7 @@ namespace Company.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CompanyDetails>>> GetCompanies()
         {
-            _logger.LogInformation("End calling GetCompanies function");
+            Log.Information("End calling GetCompanies function");
             List<CompanyDetails> dets = null;
             try
             {
@@ -88,10 +95,10 @@ namespace Company.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling GetCompanies function");
+            Log.Information("End calling GetCompanies function");
             return dets;
         }
 
@@ -99,7 +106,7 @@ namespace Company.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CompanyDetails>> DeleteCompany([FromRoute] string companycode)
         {
-            _logger.LogInformation("End calling DeleteCompany function");
+            Log.Information("End calling DeleteCompany function");
             var company = await _context.CompanyDetails.SingleOrDefaultAsync(x => x.Code.ToLower() == companycode.ToLower());
             if (company == null)
                 return Ok("Company details not found");
@@ -114,12 +121,12 @@ namespace Company.API.Controllers
                 }
                 catch (DbUpdateException ex)
                 {
-                    _logger.LogError("There is an exception", ex);
+                    Log.Error("There is an exception", ex);
                     _transaction.Rollback();
                     throw;
                 }
             }
-            _logger.LogInformation("End calling DeleteCompany function");
+            Log.Information("End calling DeleteCompany function");
             return company;
         }
     }

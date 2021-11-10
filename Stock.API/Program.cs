@@ -10,12 +10,12 @@ namespace Stock.API
     {
         public static void Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.Kafka(bootstrapServers: "localhost:9092", topic: "stocks", securityProtocol: Confluent.Kafka.SecurityProtocol.Plaintext)
-                //.WriteTo.File(@"E:\\Estockmarket_stock_api.txt")
-                .Enrich.StockLogEnricher()
-                .CreateLogger();
-            CreateHostBuilder(args).Build().Run();
+            //Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.Kafka(bootstrapServers: "localhost:9092", topic: "stocks", securityProtocol: Confluent.Kafka.SecurityProtocol.Plaintext)
+            //    //.WriteTo.File(@"E:\\Estockmarket_stock_api.txt")
+            //    .Enrich.StockLogEnricher()
+            //    .CreateLogger();
+            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

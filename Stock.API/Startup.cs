@@ -1,4 +1,5 @@
 using Amazon;
+using Amazon.CloudWatchLogs;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime;
@@ -20,10 +21,16 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using Newtonsoft.Json;
 using Prometheus;
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
+using Serilog.Formatting;
+using Serilog.Sinks.AwsCloudWatch;
 using Stock.API.Logging;
 using Stock.API.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -35,6 +42,7 @@ namespace Stock.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            SetUpLogger();
         }
 
         public IConfiguration Configuration { get; }
@@ -179,6 +187,53 @@ namespace Stock.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock API V1");
                 c.RoutePrefix = "";
             });
+        }
+
+        private void SetUpLogger()
+        {
+            var logLevel = LogEventLevel.Information;
+            var retentionPolicy = LogGroupRetentionPolicy.ThreeDays;
+            var region = RegionEndpoint.GetBySystemName(Configuration.GetSection("AWSCred").GetSection("Region").Value);
+            var levelSwitch = new LoggingLevelSwitch();
+            levelSwitch.MinimumLevel = logLevel;
+            var formatter = new CustomLogFormatter();
+            var options = new CloudWatchSinkOptions
+            {
+                LogGroupName = "stocks-logs",
+                TextFormatter = formatter,
+                MinimumLogEventLevel = logLevel,
+                BatchSizeLimit = 100,
+                QueueSizeLimit = 10000,
+                Period = TimeSpan.FromSeconds(10),
+                CreateLogGroup = true,
+                LogStreamNameProvider = new DefaultLogStreamProvider(),
+                RetryAttempts = 5,
+                LogGroupRetentionPolicy = retentionPolicy
+            };
+            var AccessKey = Configuration.GetSection("AWSCred").GetSection("AccessKey").Value;
+            var SecretKey = Configuration.GetSection("AWSCred").GetSection("SecretKey").Value;
+
+            var credentials = new BasicAWSCredentials(AccessKey, SecretKey);
+            var client = new AmazonCloudWatchLogsClient(credentials, region);
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Logger(l1 => l1
+                    .MinimumLevel.ControlledBy(levelSwitch)
+                    .WriteTo.AmazonCloudWatch(options, client))
+              .CreateLogger();
+
+        }
+    }
+
+    public class CustomLogFormatter : ITextFormatter
+    {
+        public void Format(LogEvent logEvent, TextWriter output)
+        {
+            output.Write("Timestamp - {0} | Level - {1} | Message {2} {3} {4}", logEvent.Timestamp, logEvent.Level, logEvent.MessageTemplate, JsonConvert.SerializeObject(logEvent.Properties), output.NewLine);
+            if (logEvent.Exception != null)
+            {
+                output.Write("Exception - {0}", logEvent.Exception);
+            }
         }
     }
 }

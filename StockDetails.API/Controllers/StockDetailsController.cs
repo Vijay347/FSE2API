@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using StockDetails.API.Models;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,18 @@ namespace StockDetails.API.Controllers
         private readonly IStockService _stockService; // Mongo DB service local
         //private readonly IDynamoDBService _dynamoDbstockService; // AWS Dynamo DB service local
 
-        private readonly ILogger<StockDetailsController> _logger;
+        //private readonly ILogger<StockDetailsController> _logger;
 
         // Mongo DB service local
-        public StockDetailsController(ILogger<StockDetailsController> logger, IStockService stockService)
+        public StockDetailsController(IStockService stockService)
         {
             _stockService = stockService;
-            _logger = logger;
         }
+        //public StockDetailsController(ILogger<StockDetailsController> logger, IStockService stockService)
+        //{
+        //    _stockService = stockService;
+        //    _logger = logger;
+        //}
 
         // AWS Dynamo DB service local
         //public StockDetailsController(ILogger<StockDetailsController> logger, IDynamoDBService dynamoDbstockService)
@@ -39,7 +44,7 @@ namespace StockDetails.API.Controllers
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Stocks>>> GetAllCompanyStocks()
         {
-            _logger.LogInformation("Start calling GetAllCompanyStocks function");
+            Log.Information("Start calling GetAllCompanyStocks function");
             List<Stocks> stocks;
             try
             {
@@ -47,10 +52,10 @@ namespace StockDetails.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling GetAllCompanyStocks function");
+            Log.Information("End calling GetAllCompanyStocks function");
             return stocks;
         }
 
@@ -58,7 +63,7 @@ namespace StockDetails.API.Controllers
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Stocks>>> GetCompanyStocksByCode([FromRoute] string code)
         {
-            _logger.LogInformation("Start calling GetCompanyStocksByCode function");
+            Log.Information("Start calling GetCompanyStocksByCode function");
             List<Stocks> stocks;
             try
             {
@@ -66,10 +71,10 @@ namespace StockDetails.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling GetCompanyStocksByCode function");
+            Log.Information("End calling GetCompanyStocksByCode function");
             return stocks;
         }
 
@@ -77,7 +82,7 @@ namespace StockDetails.API.Controllers
         [ProducesResponseType(typeof(Stocks), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Stocks>>> GetCompanyStocks([FromBody] StockGetVM input)
         {
-            _logger.LogInformation("Start calling GetCompanyStocks function");
+            Log.Information("Start calling GetCompanyStocks function");
             List<Stocks> stocks;
             try
             {
@@ -85,10 +90,10 @@ namespace StockDetails.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("There is an exception", ex);
+                Log.Error("There is an exception", ex);
                 throw;
             }
-            _logger.LogInformation("End calling GetCompanyStocks function");
+            Log.Information("End calling GetCompanyStocks function");
             return stocks;
         }
 

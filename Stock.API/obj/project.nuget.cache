@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "JZDflhymcWt0kLBZ/RCoNFcPe+3zht6CoCSq6s9JQvhQkBuX9aFNLbIiU5FAwFE45KkD8rkzS3Z7wIIcWikOxQ==",
+  "dgSpecHash": "JVl5QH9CZEpBk+SUoR+662IfecYwx35km24U5KU0wnbSqrLnxsY3rkbiBnUOvO9MpxdwlWEsCajoRPue5RLFQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\estockmarketapi\\Stock.API\\Stock.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\awssdk.cloudwatchlogs\\3.7.0.13\\awssdk.cloudwatchlogs.3.7.0.13.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\awssdk.core\\3.7.1.4\\awssdk.core.3.7.1.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.0.49\\awssdk.dynamodbv2.3.7.0.49.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.1\\awssdk.extensions.netcore.setup.3.7.1.nupkg.sha512",
@@ -53,6 +54,7 @@
     "C:\\Users\\user\\.nuget\\packages\\serilog.formatting.compact\\1.1.0\\serilog.formatting.compact.1.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.settings.configuration\\3.1.0\\serilog.settings.configuration.3.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.async\\1.5.0\\serilog.sinks.async.1.5.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.awscloudwatch\\4.0.171\\serilog.sinks.awscloudwatch.4.0.171.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.confluent.kafka\\1.9.2\\serilog.sinks.confluent.kafka.1.9.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.console\\3.1.1\\serilog.sinks.console.3.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.debug\\1.0.1\\serilog.sinks.debug.1.0.1.nupkg.sha512",

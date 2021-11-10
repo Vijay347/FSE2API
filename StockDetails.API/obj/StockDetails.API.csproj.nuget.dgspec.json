@@ -86,6 +86,10 @@
               "target": "Package",
               "version": "[1.5.0, )"
             },
+            "Serilog.Sinks.AwsCloudWatch": {
+              "target": "Package",
+              "version": "[4.0.171, )"
+            },
             "Serilog.Sinks.Confluent.Kafka": {
               "target": "Package",
               "version": "[1.9.2, )"

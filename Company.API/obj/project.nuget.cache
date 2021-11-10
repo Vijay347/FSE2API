@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "R6II6BGgf6UbPh7tIsaxS6oabEw7t+BO2FA0yIIjOsqDR8SXK1Zcc07NzY7G9wOaCxKoSP9MjLGM4emx+8qyRw==",
+  "dgSpecHash": "whocttUHYNElLuo9JI2lNdA400LsrKsRXRkM8kGvaQO+YTukPtExkP6vcXMfYJocn0Qwet/duY7FAYJc27NJrQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\estockmarketapi\\Company.API\\Company.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\awssdk.cloudwatchlogs\\3.7.0.13\\awssdk.cloudwatchlogs.3.7.0.13.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\awssdk.core\\3.7.0.14\\awssdk.core.3.7.0.14.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\confluent.kafka\\1.6.3\\confluent.kafka.1.6.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\librdkafka.redist\\1.6.1\\librdkafka.redist.1.6.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.17\\microsoft.aspnetcore.authentication.jwtbearer.3.1.17.nupkg.sha512",
@@ -99,6 +101,7 @@
     "C:\\Users\\user\\.nuget\\packages\\serilog.formatting.compact\\1.1.0\\serilog.formatting.compact.1.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.settings.configuration\\3.1.0\\serilog.settings.configuration.3.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.async\\1.5.0\\serilog.sinks.async.1.5.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.awscloudwatch\\4.0.171\\serilog.sinks.awscloudwatch.4.0.171.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.confluent.kafka\\1.9.2\\serilog.sinks.confluent.kafka.1.9.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.console\\3.1.1\\serilog.sinks.console.3.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\serilog.sinks.debug\\1.0.1\\serilog.sinks.debug.1.0.1.nupkg.sha512",
